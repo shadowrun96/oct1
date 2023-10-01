@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 
+import os
 
+def op_0x8e():
+    print ("ADC A,(HL)")
 
 # see z80_dd.txt
 #
 def op_0xdd():
     pass
-
 # see z80_fd.txt
 #
 def op_0xfd():
@@ -14,7 +16,7 @@ def op_0xfd():
 def op_0xce():
     pass
 def op_0x8f():
-    pass
+    print ("ADC A,A")
 def op_0x88():
     pass
 def op_0x89():
@@ -24,6 +26,8 @@ def op_0x8a():
 def op_0x8b():
     pass
 def op_0x8c():
+    pass
+def op_0x8d():
     pass
 # see z80_ed.txt
 def op_0xed():
@@ -44,7 +48,9 @@ def op_0x83():
     pass
 def op_0x84():
     pass
-def op_0x09():
+def op_0x85():
+    pass
+def op_0x9():
     pass
 def op_0x19():
     pass
@@ -84,6 +90,10 @@ def op_0xd4():
     pass
 def op_0xc4():
     pass
+def op_0xf4():
+    pass
+def op_0xc4():
+    pass
 def op_0xe4():
     pass
 def op_0xcc():
@@ -112,15 +122,17 @@ def op_0xed():
     pass
 def op_0x2f():
     pass
+def op_0x27():
+    pass
 def op_0x35():
     pass
 def op_0x3d():
     pass
-def op_0x05():
+def op_0x5():
     pass
-def op_0x0b():
+def op_0xb():
     pass
-def op_0x0d():
+def op_0xd():
     pass
 def op_0x15():
     pass
@@ -144,7 +156,7 @@ def op_0xfb():
     pass
 def op_0xe3():
     pass
-def op_0x08():
+def op_0x8():
     pass
 def op_0xeb():
     pass
@@ -158,11 +170,11 @@ def op_0x34():
     pass
 def op_0x3c():
     pass
-def op_0x04():
+def op_0x4():
     pass
-def op_0x03():
+def op_0x3():
     pass
-def op_0x0c():
+def op_0xc():
     pass
 def op_0x14():
     pass
@@ -208,7 +220,7 @@ def op_0x20():
     pass
 def op_0x28():
     pass
-def op_0x02():
+def op_0x2():
     pass
 def op_0x12():
     pass
@@ -232,9 +244,11 @@ def op_0x32():
     pass
 def op_0x22():
     pass
-def op_0x0a():
+def op_0xa():
     pass
 def op_0x1a():
+    pass
+def op_0x7e():
     pass
 def op_0x3a():
     pass
@@ -248,13 +262,15 @@ def op_0x79():
     pass
 def op_0x7a():
     pass
+def op_0x7b():
+    pass
 def op_0x7c():
     pass
 def op_0x7d():
     pass
 def op_0x46():
     pass
-def op_0x06():
+def op_0x6():
     pass
 def op_0x47():
     pass
@@ -270,11 +286,11 @@ def op_0x44():
     pass
 def op_0x45():
     pass
-def op_0x01():
+def op_0x1():
     pass
 def op_0x4e():
     pass
-def op_0x0e():
+def op_0xe():
     pass
 def op_0x4f():
     pass
@@ -354,6 +370,8 @@ def op_0x6e():
     pass
 def op_0x2e():
     pass
+def op_0x6f():
+    pass
 def op_0x68():
     pass
 def op_0x69():
@@ -370,7 +388,7 @@ def op_0x31():
     pass
 def op_0xf9():
     pass
-def op_0x00():
+def op_0x0():
     pass
 def op_0xb6():
     pass
@@ -389,6 +407,8 @@ def op_0xb3():
 def op_0xb4():
     pass
 def op_0xb5():
+    pass
+def op_0xd3():
     pass
 def op_0xf1():
     pass
@@ -420,15 +440,17 @@ def op_0xf0():
     pass
 def op_0xe8():
     pass
+def op_0xe0():
+    pass
 def op_0xc8():
     pass
 def op_0x17():
     pass
-def op_0x07():
+def op_0x7():
     pass
 def op_0x1f():
     pass
-def op_0x0f():
+def op_0xf():
     pass
 def op_0xc7():
     pass
@@ -486,6 +508,8 @@ def op_0x95():
     pass
 def op_0xae():
     pass
+def op_0xee():
+    pass
 def op_0xaf():
     pass
 def op_0xa8():
@@ -501,7 +525,7 @@ def op_0xac():
 def op_0xad():
     pass
 
-mcode = { '0x00': op_0x00(),
+mcode = { '0x0': op_0x0(),
           '0xdd': op_0xdd(), 
           '0xfd': op_0xfd(),
           '0xce': op_0xce(),
@@ -511,7 +535,9 @@ mcode = { '0x00': op_0x00(),
           '0x8a': op_0x8a(),
           '0x8b': op_0x8b(),
           '0x8c': op_0x8c(),
+          '0x8d': op_0x8d(),
           '0xed': op_0xed(),
+          '0x8e': op_0x8e(),
           '0x86': op_0x86(),
           '0xc6': op_0xc6(),
           '0x87': op_0x87(),
@@ -520,7 +546,8 @@ mcode = { '0x00': op_0x00(),
           '0x82': op_0x82(),
           '0x83': op_0x83(),
           '0x84': op_0x84(),
-          '0x09': op_0x09(),
+          '0x85': op_0x85(),
+          '0x9': op_0x9(),
           '0x19': op_0x19(),
           '0x29': op_0x29(),
           '0x39': op_0x39(),
@@ -539,6 +566,8 @@ mcode = { '0x00': op_0x00(),
           '0xfc': op_0xfc(),
           '0xd4': op_0xd4(),
           '0xc4': op_0xc4(),
+          '0xf4': op_0xf4(),
+          '0xec': op_0xe4(),
           '0xe4': op_0xe4(),
           '0xcc': op_0xcc(),
           '0x3f': op_0x3f(),
@@ -553,11 +582,12 @@ mcode = { '0x00': op_0x00(),
           '0xbd': op_0xbd(),
           '0xed': op_0xed(),
           '0x2f': op_0x2f(),
+          '0x27': op_0x27(),
           '0x35': op_0x35(),
           '0x3d': op_0x3d(),
-          '0x05': op_0x05(),
-          '0x0b': op_0x0b(),
-          '0x0d': op_0x0d(),
+          '0x5': op_0x5(),
+          '0xb': op_0xb(),
+          '0xd': op_0xd(),
           '0x15': op_0x15(),
           '0x1b': op_0x1b(),
           '0x1d': op_0x1d(),
@@ -569,16 +599,16 @@ mcode = { '0x00': op_0x00(),
           '0x10': op_0x10(),
           '0xfb': op_0xfb(),
           '0xe3': op_0xe3(),
-          '0x08': op_0x08(),
+          '0x8': op_0x8(),
           '0xeb': op_0xeb(),
           '0xd9': op_0xd9(),
           '0x76': op_0x76(),
           '0xdb': op_0xdb(),
           '0x34': op_0x34(),
           '0x3c': op_0x3c(),
-          '0x04': op_0x04(),
-          '0x03': op_0x03(),
-          '0x0c': op_0x0c(),
+          '0x4': op_0x4(),
+          '0x3': op_0x3(),
+          '0xc': op_0xc(),
           '0x14': op_0x14(),
           '0x13': op_0x13(),
           '0x1c': op_0x1c(),
@@ -601,7 +631,7 @@ mcode = { '0x00': op_0x00(),
           '0x30': op_0x30(),
           '0x20': op_0x20(),
           '0x28': op_0x28(),
-          '0x02': op_0x02(),
+          '0x2': op_0x2(),
           '0x12': op_0x12(),
           '0x36': op_0x36(),
           '0x77': op_0x77(),
@@ -613,18 +643,20 @@ mcode = { '0x00': op_0x00(),
           '0x75': op_0x75(),
           '0x32': op_0x32(),
           '0x22': op_0x22(),
-          '0x0a': op_0x0a(),
+          '0xa': op_0xa(),
           '0x1a': op_0x1a(),
+          '0x7e': op_0x7e(),
           '0x3a': op_0x3a(),
           '0x3e': op_0x3e(),
           '0x7f': op_0x7f(),
           '0x78': op_0x78(),
           '0x79': op_0x79(),
           '0x7a': op_0x7a(),
+          '0x7b': op_0x7b(),
           '0x7c': op_0x7c(),
           '0x7d': op_0x7d(),
           '0x46': op_0x46(),
-          '0x06': op_0x06(),
+          '0x6': op_0x6(),
           '0x47': op_0x47(),
           '0x40': op_0x40(),
           '0x41': op_0x41(),
@@ -632,9 +664,9 @@ mcode = { '0x00': op_0x00(),
           '0x43': op_0x43(),
           '0x44': op_0x44(),
           '0x45': op_0x45(),
-          '0x01': op_0x01(),
+          '0x1': op_0x1(),
           '0x4e': op_0x4e(),
-          '0x0e': op_0x0e(),
+          '0xe': op_0xe(),
           '0x4f': op_0x4f(),
           '0x48': op_0x48(),
           '0x49': op_0x49(),
@@ -674,6 +706,7 @@ mcode = { '0x00': op_0x00(),
           '0x21': op_0x21(),
           '0x6e': op_0x6e(),
           '0x2e': op_0x2e(),
+          '0x6f': op_0x6f(),
           '0x68': op_0x68(),
           '0x69': op_0x69(),
           '0x6a': op_0x6a(),
@@ -682,7 +715,7 @@ mcode = { '0x00': op_0x00(),
           '0x6d': op_0x6d(),
           '0x31': op_0x31(),
           '0xf9': op_0xf9(),
-          '0x00': op_0x00(),
+          '0x0': op_0x0(),
           '0xb6': op_0xb6(),
           '0xf6': op_0xf6(),
           '0xb7': op_0xb7(),
@@ -692,6 +725,7 @@ mcode = { '0x00': op_0x00(),
           '0xb3': op_0xb3(),
           '0xb4': op_0xb4(),
           '0xb5': op_0xb5(),
+          '0xd3': op_0xd3(),
           '0xf1': op_0xf1(),
           '0xc1': op_0xc1(),
           '0xd1': op_0xd1(),
@@ -707,11 +741,12 @@ mcode = { '0x00': op_0x00(),
           '0xc0': op_0xc0(),
           '0xf0': op_0xf0(),
           '0xe8': op_0xe8(),
+          '0xe0': op_0xe0(),
           '0xc8': op_0xc8(),
           '0x17': op_0x17(),
-          '0x07': op_0x07(),
+          '0x7': op_0x7(),
           '0x1f': op_0x1f(),
-          '0x0f': op_0x0f(),
+          '0xf': op_0xf(),
           '0xc7': op_0xc7(),
           '0xcf': op_0xcf(),
           '0xd7': op_0xd7(),
@@ -740,6 +775,7 @@ mcode = { '0x00': op_0x00(),
           '0x94': op_0x94(),
           '0x95': op_0x95(),
           '0xae': op_0xae(),
+          '0xee': op_0xee(),
           '0xaf': op_0xaf(),
           '0xa8': op_0xa8(),
           '0xa9': op_0xa9(),
@@ -749,15 +785,26 @@ mcode = { '0x00': op_0x00(),
           '0xad': op_0xad()
 }
 
- 
-        
-cpcbin = open("BOMBJACK", "rb")
-bytes_read = cpcbin.read(16)
+def slurp(filename):
 
-op_func = mcode['0x00']
-#op_func()
+    cpcbin_fname = filename        
+    cpcbin = open(cpcbin_fname, "rb")
+    cpcbin_len = (os.stat(cpcbin_fname)).st_size
+    cpcbin_bytes = cpcbin.read(cpcbin_len)
+    cpcbin_hex_list = [hex(i) for i in cpcbin_bytes]
+    cpcbin.close()
 
-    
+    return cpcbin_hex_list
 
-cpcbin.close()
-#
+   
+bombjack = slurp("/home/gfountis/projects/darkforce/BOMBJACK")
+#print(bombjack)
+print(len(bombjack))
+
+
+bc = 0 #bytecode counter
+
+for byte in bombjack:
+    op_func = mcode[byte]
+    print(byte)
+
