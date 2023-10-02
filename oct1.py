@@ -7,50 +7,73 @@ bcntr = 0
 hexes = []
 
 
+def printable(char):
+    if (ord(char) > 31):
+        return char
+    else:
+        return "."
+
 def op_0x8e():
-    print ("adc a,(hl)")
+    
+    global bcntr
+    global hexes
+    bcntr +=1
+
+    return ["adc a,(hl)", "0x8e", chr(0x8e)]
 
 # see z80_dd.txt
 #
+
 def op_0xdd():
+
     pass
 # see z80_fd.txt
 #
 def op_0xfd():
     pass
-
 def op_0xce():              # adc a,n
-
+    
     global bcntr
     global hexes
     bcntr +=1 # read n
     n = hexes[bcntr]
-    print("adc a," + "&" + n[2:])
+    n_ascii = printable(n[2:]) 
 
-
+    return ["adc a," + "&" + n[2:],"0xce " +  n[2:], chr(0xce) + " " + chr(n_ascii)] 
 
 def op_0x8f():
     global bcntr
     print ("adc a,a")
     bcntr +=1
-
 def op_0x88():
     global bcntr 
     print("adc a,b")
     bcntr +=1
 def op_0x89():
-    pass
+    global bcntr
+    print("adc a,c")
+    bcntr +=1
 def op_0x8a():
-    pass
+    global bcntr
+    print("adc a,d")
+    bcntr +=1
 def op_0x8b():
-    pass
+    global bcntr
+    print("adc a,e")
+    bcntr +=1
 def op_0x8c():
-    pass
+    global bcntr
+    print("adc a,c")
+    bcntr +=1
 def op_0x8d():
-    pass
-# see z80_ed.txt
+    global bcntr
+    print("adc a,l")
+    bcntr +=1
+    # see z80_ed.txt
 def op_0xed():
-    pass
+    global bcntr
+
+    bcntr +=1
 def op_0x86():
     pass
 def op_0xc6():
@@ -298,7 +321,10 @@ def op_0x40():
 def op_0x41():
     pass
 def op_0x42():
-    pass
+    global bcntr
+    print("ld b,d")
+    bcntr +=1
+
 def op_0x43():
     pass
 def op_0x44():
@@ -312,7 +338,9 @@ def op_0x4e():
 def op_0xe():
     pass
 def op_0x4f():
-    pass
+    global bcntr
+    print("ld c,a" + "\t" + "; "+chr(0x04f))
+    bcntr +=1
 def op_0x48():
     pass
 def op_0x49():
@@ -408,7 +436,9 @@ def op_0x31():
 def op_0xf9():
     pass
 def op_0x0():
-    pass
+    global bcntr
+    print("nop")
+    bcntr +=1
 def op_0xb6():
     pass
 def op_0xf6():
@@ -817,12 +847,17 @@ def slurp(filename):
 
 
 hexes = slurp(sys.argv[1])
-#print(len(hexes))
-
-for byte in hexes:
+while(1):
+    byte = hexes[bcntr]
     op_func = mcode[byte]
     op_func()
+    print(bcntr)
+    print(byte)
 
-
+#
+#
+# NOTE: make op_0x?? calls return a list, not print the disassembly.
+# Delegate the printing/formating to another function. Otherwise every single change you make in opcodes, # will need to propagate to 150+ functions. Also, you need to put code that outputs different formats,
+# depending: i) just the asm source? ii) the asm source and the ascii codes? iii) addresses/labels?
 
 
